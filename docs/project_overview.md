@@ -17,8 +17,7 @@ The project was funded by ESA / Libre Space Foundation through the ESA Spectrum 
 ## Measurement sites
 
 - **Zlín — urban site:** Located near terrestrial transmitters, representing an environment with potential interference from mobile networks and other terrestrial sources.
-- **Hošťálková — rural reference site:** Located in an open area with few nearby terrestrial transmitters and no expected 5G coverage, providing a reference environment with lower anticipated interference.
-
+- **Hošťálková — rural reference site:** Located in a rural environment with more limited mapped coverage in the 3.4–3.8 GHz band. The project team's inspection of the Czech Telecommunication Office coverage map indicated coverage from Vodafone only, compared with T-Mobile, O2, and Vodafone at the urban site.
 Both stations used identical measurement equipment and acquisition settings to support comparison between the two environments.
 
 ## Measurement campaign
