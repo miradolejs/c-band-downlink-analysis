@@ -5,7 +5,7 @@
 Two SDR measurement stations were deployed to compare C-band satellite downlink reception in different terrestrial radio environments:
 
 - **Zlín:** An urban measurement site on the roof of the Faculty of Applied Informatics, Tomas Bata University in Zlín, near terrestrial transmitters.
-- **Hošťálková:** A rural reference site on the roof of a shelter, with few nearby terrestrial transmitters and no expected 5G coverage.
+- **Hošťálková:** A rural reference site on the roof of a shelter, with more limited mapped coverage in the 3.4–3.8 GHz band. Coverage was indicated for Vodafone only during the project team's inspection of the Czech Telecommunication Office coverage map.
 
 Both antennas had an unobstructed view in the selected reception direction. The stations used the same principal hardware and acquisition settings, with different coaxial cable lengths.
 
