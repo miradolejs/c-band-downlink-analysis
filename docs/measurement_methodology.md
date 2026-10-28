@@ -150,6 +150,10 @@ The reported nominal sensor accuracies were:
 
 A Wemos D1 mini read the sensor and communicated with the Arduino over an RS-485 link using Modbus. RS-485 accommodated the distance between the outdoor sensor and the equipment location.
 
+![Environmental monitoring and RS-485 wiring](../measurement_stations/hardware/wiring/environmental_monitoring_rs485_wiring.png)
+
+*Environmental monitoring connections. The Wemos D1 mini reads the outdoor sensor and communicates with the Arduino over RS-485. The Arduino forwards environmental readings to the Raspberry Pi over USB.*
+
 The Arduino forwarded environmental readings to the Raspberry Pi over USB. Environmental values were stored as metadata associated with each recording.
 
 These measurements represent conditions near the antenna, rather than direct measurements of LNB or SDR component temperatures.
