@@ -27,6 +27,10 @@ Measurements were conducted during **18–30 September 2026** and **15–25 Octo
 
 The LNB converted the received C-band signal to an intermediate frequency (IF), which was recorded by the SDR. The bias tee supplied DC power to the LNB.
 
+![LNB power supply and SDR receiving chain](../measurement_stations/hardware/wiring/lnb_bias_tee_sdr_wiring.png)
+
+*Receiving chain connecting the LNB to the SDR through the bias tee. The laboratory supply provides 24 V DC to the LNB, while the bias tee blocks this DC voltage towards the SDR.*
+
 Hardware schematics and wiring details are provided in [`../measurement_stations/`](../measurement_stations/).
 
 ## 3. Antenna alignment
