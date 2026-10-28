@@ -24,6 +24,16 @@ Some photographs show assembly and testing stages. The final hardware configurat
 
 *Installation work on the rural antenna, with nearby rooftops and wooded slopes in the background.*
 
+## Rural site context — map imagery
+
+![Rural installation location](rural_installation_location.png)
+
+*Map-service imagery showing the shelter used for the antenna installation, marked by an arrow.*
+
+![Approximate rural reception direction](rural_reception_view.png)
+
+*Approximate view towards the reception direction. This image provides landscape context rather than an exact view from the antenna position.*
+
 ## Equipment setups
 
 ![Urban equipment setup](urban_equipment_setup.jpeg)
