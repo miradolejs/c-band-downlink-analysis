@@ -80,7 +80,9 @@ The device is opened using `SoapySDR.Device()` without a serial-number selector.
 
 Phase 1 requests 50-second recordings every minute. Phase 2 requests 60-second recordings every ten minutes. Scheduled slots already passed when the program starts are skipped during initial schedule alignment.
 
-These are historical configuration values, not reusable defaults. Change them before a new deployment. This snapshot's phase-2 start does not by itself document acquisition for the whole day of 15 October; campaign coverage must be established from the actual recordings.
+The second measurement campaign began on 16 October 2026 at 00:00 local time, corresponding to START_PHASE2. START_PHASE1 defines the preceding preparatory schedule and is not the start of the published dataset.
+
+These are historical configuration values, not reusable defaults. Change them before a new deployment.
 
 The scheduler uses local system time. NTP configuration is external to this program. Fine inter-station timing is established later using recorded markers and signal analysis.
 
