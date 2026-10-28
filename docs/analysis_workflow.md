@@ -44,12 +44,13 @@ Input files are interleaved little-endian `int16` IQ recordings with associated 
 | PPS inventory | Beginning of each RAW recording | `pps_results` MAT dataset, CSV inventories, and figures |
 | Standalone downlink decoding | Selected RAW recording interval | PCAP, MAT diagnostics, and text summary |
 | Long-term frame comparison | Paired RAW recordings, PPS inventory, and SNR dataset | Frame observations, CSV tables, audits, and MAT results |
+| Frame-summary visualization | CSV outputs from one frame-analysis run | Summary tables and PNG/PDF/FIG figures |
 
 The principal execution sequences are:
 
 - **Noise statistics → SNR**
 - **Noise statistics + JSON metadata → temperature–noise comparison**
-- **PPS inventory + SNR + paired RAW recordings → long-term frame comparison and summary tables**
+- **PPS inventory + SNR + paired RAW recordings → long-term frame comparison → summary visualization**
 
 Standalone PCAP export is independent of the long-term frame comparison.
 
@@ -396,7 +397,48 @@ Keep source files, inputs, date bounds, and processing settings consistent when 
 
 See the [long-term analysis README](../analysis/downlink_frames/long_term_analysis/README.md) for the detailed acceptance criteria, SNR screening, timing guards, and file roles.
 
-## 13. Publication of analysis results
+## 13. Summary visualization of long-term frame analysis
+
+**Function:** [`plot_frame_analysis_summary.m`](../analysis/downlink_frames/visualization/plot_frame_analysis_summary.m)  
+**Repository directory:** [`../analysis/downlink_frames/visualization/`](../analysis/downlink_frames/visualization/)
+
+This function summarizes completed CSV results without rereading RAW recordings or repeating synchronization and decoding. It supports the selected date range in either a full or limited test run, provided at least one analyzed second is available. MATLAB R2020b or later is required, without additional toolboxes.
+
+Select one output folder containing `all_seconds.csv`, `pair_audit.csv`, and optionally `summary.csv`. All inputs must originate from the same run.
+
+```matlab
+R = plot_frame_analysis_summary;
+```
+
+Or specify the input and output folders:
+
+```matlab
+R = plot_frame_analysis_summary( ...
+    'D:\results\FRAME_FULL_run', ...
+    'D:\results\frame_figures');
+```
+
+By default, outputs are saved in a timestamped `FIGURES_<timestamp>` subfolder of the input directory.
+
+The function validates duplicate identifiers and frame-count identities, then aggregates rows with `Status = analyzed`. Record-level SNR comes from the pair audit when its columns exist; otherwise finite per-second SNR values are averaged in the linear domain. Date labels use the filename clock without timezone conversion.
+
+| Figure | Content |
+|---|---|
+| `01_time_series` | Recording-level agreement, station SNR, and frame counts per analyzed second |
+| `02_daily_summary` | Daily agreement and frame counts per analyzed second |
+| `03_snr_relationship` | Agreement versus SNR, colored by day |
+| `04_coverage` | Daily analyzed pairs and SNR, PPS, or other exclusions |
+| `05_within_record_variability` | Variation across defined per-second agreement percentages |
+
+Each figure is saved as PNG at 250 dpi, vector PDF, and editable FIG. Machine-readable outputs are `records_summary.csv`, `daily_summary.csv`, `global_summary.csv`, and `graph_summary.mat`.
+
+Recording, daily, and global ratios use `sum(Common) / sum(Village_Total)`. Zero denominators remain undefined. Within-record variability is a standard deviation in percentage points and requires at least two defined per-second ratios; zero-village-frame seconds are excluded from that statistic.
+
+Frame rates and variability refer only to the selected analyzed seconds. Coverage is relative to pairs in the audit, and SNR labels assume the supplied 1 MHz integration band. The figures preserve decoder results and do not independently establish the cause of interference.
+
+See the [visualization README](../analysis/downlink_frames/visualization/README.md) for input handling and interpretation details.
+
+## 14. Publication of analysis results
 
 For each published result set, retain:
 
@@ -405,6 +447,3 @@ For each published result set, retain:
 - Machine-readable result datasets.
 - Figures and captions.
 - Coverage and exclusion information.
-Campaign coverage and analyzed coverage must be reported separately. The supplied scripts contain different date ranges and selected intervals; their presence in this repository does not imply that every analysis covers the complete measurement campaign.
-
-Results should be stored under [`../results/`](../results/), grouped by analysis type and processing run.
