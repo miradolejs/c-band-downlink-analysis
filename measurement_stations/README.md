@@ -28,6 +28,8 @@ The coaxial cable length was **17 m at the urban station** and **10 m at the rur
 
 Both antennas used nominal pointing settings of **180° azimuth**, **33° elevation**, and **horizontal receive polarization**.
 
+A [functional overview of the station](../docs/project_overview.md#system-overview) is provided in the project documentation.
+
 ## IQ acquisition
 
 The Raspberry Pi controlled the SDR, recorded IQ samples, and stored acquisition and environmental metadata.
