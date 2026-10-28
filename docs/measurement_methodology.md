@@ -121,6 +121,14 @@ The RF switch control was produced by an AND gate combining:
 - The PPS signal from the GPSDO.
 - An enable signal from the Arduino.
 
+![PPS marker control wiring](../measurement_stations/hardware/wiring/pps_marker_control_wiring.png)
+
+*Connections between the GPSDO, Arduino, custom AND control assembly, and RF switch. Two laboratory supplies provide the RF switch with +3.3 V and −3.3 V relative to the common reference.*
+
+![Capacitive injection of the RF timing marker](../measurement_stations/hardware/wiring/marker_capacitive_coupling.png)
+
+*The RF generator supplies a continuous-wave marker signal to the RF switch. The gated output is coupled capacitively into the receiving cable over approximately 15 cm near the SDR input. A separate GPSDO output supplies the SDR with a 10 MHz frequency reference.*
+
 Injection was enabled only when both inputs were high. The Arduino provided the five-second enable window at the beginning of each recording, while the GPSDO PPS signal defined the timing of the individual marker pulses. The Arduino obtained its time reference from a NEO-7M GPS module.
 
 The first marker was unsuitable for alignment because its capture depended on the recording start timing. The remaining four markers were used for timing analysis.
