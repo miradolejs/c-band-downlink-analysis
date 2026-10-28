@@ -32,9 +32,11 @@ The custom circuit implements an AND control function using a relay and an optoc
 
 *Electrical schematic of the relay and optocoupler control assembly.*
 
-## Installation photographs
+## Hardware photographs
 
-Photographs of the installations and their surroundings are presented in [Station locations](../../docs/station_locations.md).
+The [hardware gallery](photos/README.md) documents both antenna installations, equipment setups, enclosure construction, PPS control boards, and environmental monitoring electronics.
+
+Descriptions of the measurement sites are provided in [Station locations](../../docs/station_locations.md).
 
 ## Related documentation
 
