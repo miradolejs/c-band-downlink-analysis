@@ -28,11 +28,11 @@ Some photographs show assembly and testing stages. The final hardware configurat
 
 ![Rural installation location](rural_installation_location.png)
 
-*Map-service imagery showing the shelter used for the antenna installation, marked by an arrow.*
+*Panorama image from [Mapy.com](https://mapy.com/) showing the rural installation area. The arrow marking the antenna installation location was added by the project team.*
 
 ![Approximate rural reception direction](rural_reception_view.png)
 
-*Approximate view towards the reception direction. This image provides landscape context rather than an exact view from the antenna position.*
+*Panorama image from [Mapy.com](https://mapy.com/) illustrating the approximate reception direction. The viewpoint differs from the antenna position and does not represent an exact boresight or measured horizon profile.*
 
 ## Equipment setups
 
