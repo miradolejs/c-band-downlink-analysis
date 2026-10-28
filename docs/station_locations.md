@@ -113,7 +113,7 @@ The photographs below document the antenna installations and their surroundings.
 
 ![Rural installation location](../measurement_stations/hardware/photos/rural_installation_location.png)
 
-*Map-service imagery showing the rural installation area. The arrow marks the shelter on which the antenna was installed.*
+*Panorama image from [Mapy.com](https://mapy.com/) showing the rural installation area. The arrow marking the antenna installation location was added by the project team.*
 
 ![Rural antenna during installation](../measurement_stations/hardware/photos/rural_antenna_installation.jpeg)
 
@@ -121,7 +121,7 @@ The photographs below document the antenna installations and their surroundings.
 
 ![Approximate rural reception direction](../measurement_stations/hardware/photos/rural_reception_view.png)
 
-*Map-service imagery illustrating the approximate reception direction and surrounding landscape. The viewpoint differs from the antenna position and does not represent an exact boresight or measured horizon profile.*
+*Panorama image from [Mapy.com](https://mapy.com/) illustrating the approximate reception direction. The viewpoint differs from the antenna position and does not represent an exact boresight or measured horizon profile.*
 
 ## 7. Comparison considerations
 
