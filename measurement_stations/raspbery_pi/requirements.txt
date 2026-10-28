@@ -1,0 +1,5 @@
+# Direct Python dependencies; versions were not recoverable from the supplied venv.
+# SoapySDR Python bindings and the FOBOS driver must be installed separately.
+numpy
+Flask
+pyserial
