@@ -4,7 +4,7 @@ Firmware for the Arduino UNO R3 used for GPS-based marker enable timing and envi
 
 ## Source
 
-Open `station_controller/station_controller.ino` in the Arduino IDE and select the Arduino UNO board and the appropriate serial port. The sketch and its containing directory have matching names. Source bytes are preserved from the supplied `masterFinal.ino`; only the filename and directory were changed.
+Open `station_controller/station_controller.ino` in the Arduino IDE and select the Arduino UNO board and the appropriate serial port. The sketch and its containing directory have matching names.
 
 Required libraries are **TinyGPSPlus** (header `TinyGPS++.h`), **ModbusMaster**, and **SoftwareSerial** from the AVR board platform. Exact library versions were not supplied.
 
