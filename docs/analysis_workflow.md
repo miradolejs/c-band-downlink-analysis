@@ -49,13 +49,13 @@ The principal execution sequences are:
 
 - **Noise statistics → SNR**
 - **Noise statistics + JSON metadata → temperature–noise comparison**
-- **PPS inventory + SNR + paired RAW recordings → frame comparison → summary visualization**
+- **PPS inventory + SNR + paired RAW recordings → long-term frame comparison and summary tables**
 
 Standalone PCAP export is independent of the long-term frame comparison.
 
 ## 4. Shared spectral conventions
 
-The spectral scripts normalize stored IQ components by **32767** and use a recorder-scale power reference of **1**.
+The spectrogram, broadband peak, noise-statistics, and SNR scripts normalize stored IQ components by **32767** and use a recorder-scale power reference of **1**. These spectral conventions do not describe every normalization step inside the downlink decoders.
 
 For the supplied spectral configuration:
 
@@ -85,7 +85,7 @@ RF = LO − IF
 
 The resulting frequency reversal must be accounted for when displaying RF spectra.
 
-The dBFS reference describes the recorder's digital scale. It is not a calibrated measurement of RF input power in dBm.
+The dBFS reference describes the recorder's digital scale. A complex constant-envelope tone with `|IQ| = 1` has total power 0 dBFS under this convention. Physical ADC full scale has not been verified, and these values are not calibrated RF input power in dBm. Noise-level standard deviation is a spread in dB, rather than a power level in dBFS.
 
 ## 5. Spectrogram inspection and broadband interference
 
@@ -107,7 +107,9 @@ The figure is generated interactively; this script does not automatically export
 
 This script averages linear FFT-bin power over selected noise-reference frequencies, converts the resulting time series to dBFS, and detects local maxima above a threshold.
 
-It displays the detections alongside the spectrogram for inspection.
+Set `file_recorded` to a RAW file from either station. The script displays detections alongside the spectrogram and the mean-bin-power trace. It generates the figure interactively without automatically exporting it.
+
+Set `threshold_dbfs` directly, or leave it empty to convert the configured unnormalized threshold to the recorder-referenced mean FFT-bin power scale.
 
 The supplied reference band is **3836.5–3837.5 MHz RF**. The minimum peak separation is configured in STFT time steps, rather than raw IQ samples.
 
@@ -126,7 +128,7 @@ Peaks_per_5s
 
 Outputs include the `impulse_results` MAT dataset and FIG/PNG figures.
 
-These values count detected local maxima under the selected threshold and separation settings. They do not directly count independent transmitters or establish the full duration of interference events.
+Detection is performed independently in each chunk; events crossing chunk boundaries are subject to that processing boundary. These values count detected local maxima under the selected threshold and separation settings. They do not directly count independent transmitters or establish the full duration of interference events.
 
 ## 6. Noise statistics
 
@@ -201,11 +203,12 @@ One temperature value is associated with all analyzed chunks from that recording
 
 Unavailable or invalid temperatures remain missing and receive a status label. Values are not interpolated.
 
-Each script saves a `temp_noise_results` MAT dataset and, when enabled, a PNG figure.
+Each script saves a `temp_noise_results` MAT dataset and, when `save_figures` is enabled, FIG and PNG figures. No RAW IQ samples are read by these temperature–noise scripts.
 
 ## 9. Combining analysis periods
 
-**Script:** `merge_iq_analysis_results.m`
+**Script:** `merge_iq_analysis_results.m`  
+**Repository directory:** [`../analysis/utilities/`](../analysis/utilities/)
 
 This utility combines compatible MAT datasets without rereading RAW recordings.
 
@@ -219,192 +222,181 @@ Supported datasets include:
 
 Only one compatible analysis type is combined per run. The utility checks processing metadata before merging.
 
-It can be used to assemble results from separately processed periods, provided their settings are compatible.
+It can be used to assemble results from separately processed periods, provided their settings are compatible. Rows with identical timestamps and matching values are retained once; conflicting values stop the merge. Source-file paths are excluded from duplicate comparisons because the same recording can have different paths on different computers. Urban and rural temperature–noise datasets remain separate analysis types.
+
+PPS inventories use their own merger, `pps_merge_results.m`, rather than this utility. Long-term frame-analysis results are not supported by either merger.
 
 ## 10. PPS inventory
 
-**Main script:** `pps_inventar_batch.m`  
-**Supporting functions:** `pps_nastroje.m`  
+**Main script:** [`pps_inventory_batch.m`](../analysis/downlink_frames/pps_inventory/pps_inventory_batch.m)  
+**Shared functions:** `pps_tools.m`  
 **Repository directory:** [`../analysis/downlink_frames/pps_inventory/`](../analysis/downlink_frames/pps_inventory/)
 
-The inventory inspects up to the first five seconds of each RAW recording for the injected **1315 MHz IF** marker.
+The inventory inspects up to the first five seconds of each RAW recording for the injected **1315 MHz IF** marker. This marker is measured directly in the recorded IF band; it is not converted to RF using the LNB oscillator frequency.
 
-Detection uses frequency-domain and temporal criteria, including pulse width, contrast, and repetition. Each attempted recording receives an inventory row, including unsuccessful or uncertain detections.
+Detection combines a narrow spectral line with temporal contrast, line-to-background ratio, accepted pulse widths, and repetition. The expected width is 100 ms and the period is 1 second. The default detector accepts widths from 40 to 250 ms and requires at least two qualifying pulses. Each attempted recording receives a table row, including uncertain detections and errors. Invalid filename times are retained as `NaT`.
 
-Outputs include:
+Configure the station roots, inclusive start/end dates, and output directory in `pps_inventory_batch.m`. Set `test_mode=true` for a limited run and use `max_test_files` to set the limit separately for each station. The supplied configuration has test mode disabled. Per-file diagnostic PNGs are generated in test mode when enabled.
 
-- `pps_results` MAT dataset and checkpoints.
-- `PPS_vsechny_soubory.csv` — Recording-level inventory.
-- `PPS_nejasne_a_chyby.csv` — Uncertain cases and errors.
-- `PPS_pokryti_slozek.csv` — Directory coverage.
-- Summary figures.
+| Script | Purpose |
+|---|---|
+| `pps_inventory_batch.m` | Batch inventory for the selected dates and stations |
+| `pps_check_single_raw.m` | Inspect one recording and save detailed diagnostics |
+| `pps_merge_results.m` | Combine compatible PPS inventory MAT files |
+| `pps_test_detector.m` | Synthetic detector checks and RAW input integration test |
+| `pps_tools.m` | Shared detector, result schema, exports, and plots |
 
-PPS inventory timing is a coarse reference. It does not provide sample-accurate edge estimates by itself.
+The batch output directory contains:
 
-Use `pps_sloucit_vysledky.m` to combine compatible PPS inventories. Single-recording inspection and detector-check utilities are supplied alongside the batch script.
+| Output | Purpose |
+|---|---|
+| `PPSInventory_*.mat` | Final `pps_results` dataset |
+| `PPS_checkpoint.mat` | Intermediate state of the same run |
+| `PPS_all_files.csv` | All attempted recording analyses |
+| `PPS_not_detected_city.txt` / `PPS_not_detected_village.txt` | Files classified as `not_detected` |
+| `PPS_ambiguous_and_errors.csv` | Cases other than `present` and `not_detected` |
+| `PPS_folder_coverage.csv` | Daily folder existence and discovered RAW counts |
+| `PPS_summary.txt` | Counts, frequency estimates, and interpretation limits |
+| `PPS_overview.fig` / `PPS_overview.png` | Frequency-offset and status summaries |
+| `test_city_*.png` / `test_village_*.png` | Per-file plots when enabled in test mode |
+
+PPS inventory timing consists of coarse STFT edge estimates corrected for FIR group delay. It is not sample-accurate alignment. `not_detected` means the pulse train was not confirmed under the configured criteria; errors and ambiguous cases remain separate.
+
+`pps_merge_results.m` validates the schema and detector settings and deduplicates by station and `Measurement_ID`, excluding root-path differences. Conflicting results stop the merge. The inventory accepts two qualifying pulses, but the frame-analysis stage below requires four complete consecutive final pulses and can therefore reject an inventory row marked `present`.
+
+See the [PPS inventory README](../analysis/downlink_frames/pps_inventory/README.md) for the complete data schema and detector settings.
 
 ## 11. Standalone downlink decoding and PCAP export
 
-**Script:** `c_downlink_do_wiresharku.m`  
+**Function:** [`decode_downlink_to_pcap.m`](../analysis/downlink_frames/demodulation_pcap/decode_downlink_to_pcap.m)  
 **Repository directory:** [`../analysis/downlink_frames/demodulation_pcap/`](../analysis/downlink_frames/demodulation_pcap/)
 
 This decoder is configured for the observed **3839 MHz** downlink, using BPSK at a nominal symbol rate of **1.024 Msymbol/s**.
 
-Processing includes channel extraction, carrier and symbol timing recovery, Viterbi decoding, descrambling, multiplex recovery, and HDLC frame checking.
+Processing includes channel extraction, carrier and symbol timing recovery, Viterbi decoding, descrambling, recovery of the `496 + 16*(280+9)` multiplex, and HDLC FCS checking.
+
+Run interactively to select a RAW file and decode the default 15–20 second interval:
+
+```matlab
+decode_downlink_to_pcap
+```
+
+Alternatively, specify the recording, start offset, and duration:
+
+```matlab
+R = decode_downlink_to_pcap('D:\data\recording.raw', 25, 5);
+```
 
 Outputs are written to a new directory beside the input RAW file:
 
-- `ethernet.pcap` — Recovered Ethernet frames passing the HDLC FCS check, with that FCS removed.
-- `analyza.mat` — Decoded data and diagnostics.
-- `souhrn.txt` — Configuration, results, and timing limitations.
+- `ethernet.pcap` — Recovered Ethernet frames passing the HDLC FCS check, with that FCS removed. This file is created only when eligible frames are recovered.
+- `analysis.mat` — Decoded data and diagnostics.
+- `summary.txt` — Configuration, results, and timing limitations.
 
-PCAP timestamps are relative estimates based on nominal symbol timing and multiplex position. Their absolute calendar dates do not represent the measurement date or original network transmission time.
+PCAP timestamps are relative estimates based on nominal symbol timing and position in the multiplex. Their absolute calendar dates do not represent the measurement date, and the timestamps do not establish exact network packet reception or transmission times.
 
-The decoder is specific to the observed signal; it is not a general DVB-S2 decoder.
+The decoder is specific to the observed signal. The physical-layer standard and specific modem are not identified. FEC re-encoding disagreement and HDLC CRC ratios are diagnostic quantities, rather than estimates of BER or network packet loss.
 
 ## 12. Long-term paired frame analysis
 
-**Entry point:** `spustit_analyzu_6_dni.m`  
-**Main function:** `analyza_ramcu.m`  
-**Configuration:** `frame_config.m`  
+**Entry point:** [`run_frame_analysis.m`](../analysis/downlink_frames/long_term_analysis/run_frame_analysis.m)  
+**Main function:** `analyze_frames.m`  
+**Defaults:** `frame_config.m`  
+**Resume function:** `resume_frame_analysis.m`  
 **Repository directory:** [`../analysis/downlink_frames/long_term_analysis/`](../analysis/downlink_frames/long_term_analysis/)
 
-Required inputs are:
+Required inputs are urban and rural RAW recording roots, a PPS inventory MAT file, and a compatible SNR MAT dataset. Both stations must have usable PPS observations for a pair to proceed.
 
-- Urban and rural RAW recording roots.
-- A PPS inventory MAT file.
-- A compatible SNR MAT dataset.
+### 12.1. Date selection and test mode
 
-The supplied six-day launcher selects **25–30 September 2026**. It requests the first ten confirmed stable seconds per pair, with a minimum of five stable seconds.
+Set paths and inclusive calendar date bounds in `run_frame_analysis.m`:
 
-Processing includes:
+```matlab
+C.analysisStartDate = datetime(2026,9,25);
+C.analysisEndDate = datetime(2026,9,30);
+```
 
-1. Pairing recordings and validating PPS observations.
-2. SNR-based screening and classification.
-3. Coarse alignment from PPS markers.
-4. Fine alignment and drift estimation using cross-correlation.
-5. Selection of stable intervals.
-6. Independent decoding at both stations.
-7. Matching recovered frames by byte content and compatible timing.
-8. Reconciliation of overlapping decoding intervals.
-9. Export of counts, statuses, and audit information.
+These are example bounds. Change them to select any interval covered by the inputs. Use the same date for a single day, or set both to `[]` to select all dates available in the inventory.
 
-Principal outputs include:
+`frame_select_dates.m` filters by the date encoded in each RAW filename, without timezone conversion. Invalid filename dates are excluded with a warning when date filtering is active. Optional `C.fileNames` further restricts the selected recordings. Date selection precedes explicit filename filtering and the test-pair limit; it does not imply complete measurement coverage.
+
+For a limited test run, set:
+
+```matlab
+test_mode = true;
+max_test_pairs = 5;
+```
+
+The test runs the same processing logic on at most the first five selected candidate filenames, including candidates that are subsequently excluded or fail. It follows inventory-name ordering and is not a random sample or a guarantee of five successful pairs. Use `C.fileNames` to target specific recordings.
+
+Set `test_mode=false` for all selected candidates. Each launch creates a new `results/FRAME_TEST_<timestamp>` or `results/FRAME_FULL_<timestamp>` folder alongside the scripts.
+
+### 12.2. Stable-second selection
+
+The launcher requests the first **10 confirmed stable seconds** per pair. At least **5 selected seconds must be successfully decoded** for the pair to contribute frame counts. Confirmed runs contain at least three consecutive stable seconds; the final selection can span separate accepted runs. Additional synchronized and decoded context seconds can be needed outside the reported selection.
+
+Configure this using `C.firstStableSeconds` and `C.minimumStableSeconds`. The selected report seconds are fixed before decoding; failed selected seconds are not replaced by later context seconds.
+
+For all available whole seconds after PPS, set `C.firstStableSeconds=0` and `C.analysisIntervalS=[]`. For a fixed interval instead, set `C.firstStableSeconds=0` and, for example, `C.analysisIntervalS=[5 15]` to report blocks starting at 5 through 14 seconds on the city RAW axis.
+
+The default long-term mode is a survey of selected stable intervals. It is neither full decoding of every minute-long recording nor a random time sample.
+
+### 12.3. Processing
+
+1. Pair inventory filenames, retain missing counterparts for the exclusion audit, and validate RAW inputs.
+2. Select the final four complete consecutive PPS pulses at both stations and estimate the coarse delay.
+3. Apply joint whole-record SNR screening where its criteria are satisfied.
+4. Estimate local delay and drift from downlink cross-correlation using three probes per second.
+5. Identify stable runs and select report seconds with supporting context.
+6. Decode each station independently, with symbol-timing consistency checks.
+7. Match frame occurrences using complete byte equality and compatible synchronized timing.
+8. Reconcile observations from overlapping decode windows within stable runs.
+9. Export per-second results, summaries, checkpoints, and audit information.
+
+Low city SNR alone does not exclude a pair. Whole-record screening requires low SNR at both stations, sufficient valid coverage, and the configured burst-protection conditions. Per-second screening also skips blocks only when both stations are classified as likely noise. The campaign-specific noise calibration interval is configured in `frame_config.m`; update it or disable calibration for another campaign. The pair-date filter does not trim the SNR dataset used for calibration.
+
+Frame starts are assigned conservative timing intervals. Context and boundary guards exclude uncertain assignments from both stations. Repeated transmissions of identical bytes remain separate occurrences; duplicate observations from overlapping windows are reconciled.
+
+### 12.4. Outputs and interpretation
 
 | Output | Purpose |
 |---|---|
-| `run_config.mat` | Run configuration and input/source signatures |
+| `run_config.mat` | Saved configuration, date selection, and input/source compatibility signatures |
 | `snr_calibration.mat` | SNR classification information |
-| `*_frames.mat` | Per-recording frame observations and diagnostics |
+| `*_frames.mat` | Per-pair observations, synchronization models, decoder diagnostics, and frame bytes |
 | `*_seconds.csv` | Selected per-second results |
-| `*_all_blocks.csv` | Additional block-level results where exported |
-| `pair_audit.csv` | Pair processing statuses and exclusions |
-| `all_seconds.csv` | Combined selected per-second results |
-| `summary.csv` / `summary.mat` | Aggregate results |
+| `*_all_blocks.csv` | All planned blocks and selection/context flags where exported |
+| `pair_audit.csv` | Pair statuses, exclusions, SNR coverage, selected/analyzed seconds, and processing times |
+| `all_seconds.csv` | Combined reported per-second results |
+| `summary.csv` / `summary.mat` | Aggregate counts, ratio, and pair totals |
 
-Use `pokracovat_analyzu_ramcu.m` to resume an existing run.
-
-The key counts are `City_Total`, `Village_Total`, `Common`, `City_Only`, and `Village_Only`.
+The key counts are `City_Total`, `Village_Total`, `Common`, `City_Only`, and `Village_Only`. Matching is one to one between compatible occurrences.
 
 ```text
 Common_Over_Village = Common / Village_Total
 ```
 
-This ratio describes shared observations relative to frames recovered at the rural station. It is not an end-to-end network packet-loss measurement or a bit-error rate.
+The aggregate ratio is `sum(Common) / sum(Village_Total)` over successfully analyzed report seconds. It is not the arithmetic mean of per-second ratios. A zero denominator gives an undefined ratio.
 
-Missing, rejected, and unreliable intervals must remain distinct from successfully analyzed intervals containing zero recovered frames.
+This metric describes shared decoded observations relative to frames recovered at the rural station. It is not end-to-end network packet loss or BER. Counts refer to safely assignable occurrences inside the accepted intervals and guards, rather than a guaranteed complete inventory of every frame in the full recording.
 
-## 13. Summary visualization of long-term frame analysis
+Missing, rejected, and unreliable intervals retain `NaN` counts and remain distinct from successfully analyzed intervals with zero recovered frames. Inspect per-second statuses and decoder diagnostics even when the pair audit reports `processed`. `Excluded_Seconds` covers excluded rows in the reported selection, rather than all unprocessed campaign time or complete missing pairs.
 
-**Script:** `vykreslit_souhrn_6_dni.m`  
-**Repository directory:** [`../analysis/downlink_frames/visualization/`](../analysis/downlink_frames/visualization/)
+### 12.5. Resume an interrupted run
 
-This script summarizes completed frame-analysis results without rereading RAW recordings or repeating synchronization and decoding.
-
-It requires MATLAB R2020b or newer, with no additional toolboxes.
-
-### Inputs and execution
-
-Select the output directory of a single frame-analysis run containing:
-
-- `all_seconds.csv` — Per-second results.
-- `pair_audit.csv` — Recording-pair statuses and record-level SNR.
-- `summary.csv` — Optional aggregate results used for a consistency check.
-
-All input tables must originate from the same run.
-
-Run interactively:
+Run:
 
 ```matlab
-R = vykreslit_souhrn_6_dni;
+R = resume_frame_analysis;
 ```
 
-Alternatively, specify the input and output directories:
+Select the existing output directory containing `run_config.mat`, or pass that directory directly to the function. The saved configuration is restored and compatible completed steps are reused. Running `run_frame_analysis` again starts a new run.
 
-```matlab
-R = vykreslit_souhrn_6_dni( ...
-    'D:\results\FRAME_6D_run', ...
-    'D:\results\frame_figures');
-```
+Keep source files, inputs, date bounds, and processing settings consistent when resuming. Changes to the analysis configuration require a new output folder. Compatibility signatures use sizes and modification times rather than cryptographic hashes. Completed decode-error blocks are not automatically retried.
 
-Without an explicit output directory, the script creates a timestamped `GRAFY_...` subdirectory within the input directory.
+See the [long-term analysis README](../analysis/downlink_frames/long_term_analysis/README.md) for the detailed acceptance criteria, SNR screening, timing guards, and file roles.
 
-### Processing
-
-The script checks recording and second identifiers for duplicates, validates frame-count identities, and aggregates rows with `Status = analyzed`.
-
-Record-level SNR is taken from `pair_audit.csv` when the corresponding columns exist. Otherwise, available per-second SNR values are averaged in the linear domain and converted back to dB.
-
-Recording, daily, and global frame-agreement ratios are calculated as:
-
-```text
-Common / village = sum(Common) / sum(Village_Total)
-```
-
-They are not arithmetic averages of individual percentages. Ratios with a zero denominator remain undefined.
-
-Times are parsed from RAW filenames without timezone conversion.
-
-### Generated figures
-
-| Figure | Content |
-|---|---|
-| `01_time_series` | Recording-level frame agreement, urban and rural SNR, and frame counts per analyzed second |
-| `02_daily_summary` | Daily frame-agreement ratios and frame counts per analyzed second |
-| `03_snr_relationship` | Frame agreement versus urban and rural SNR, coloured by day |
-| `04_coverage` | Daily counts of analyzed pairs, pairs skipped by SNR or PPS criteria, and other cases |
-| `05_within_record_variability` | Distribution of within-record variability and its relationship to recording-level frame agreement |
-
-Each figure is saved as:
-
-- **PNG** at 250 dpi.
-- **Vector PDF**.
-- **Editable MATLAB FIG**.
-
-Figure labels are in English.
-
-### Summary datasets
-
-| Output | Content |
-|---|---|
-| `records_summary.csv` | Per-recording counts, ratios, SNR, and variability |
-| `daily_summary.csv` | Daily totals, coverage categories, and ratios |
-| `global_summary.csv` | Aggregate counts, coverage, and overall ratio |
-| `graph_summary.mat` | MATLAB structure containing the summary tables and output directory |
-
-### Interpretation
-
-Frame counts per analyzed second refer only to the selected, successfully analyzed blocks. They are not estimates of total traffic across each full recording or the complete campaign.
-
-Within-record variability is the standard deviation of per-second frame-agreement percentages, expressed in **percentage points**. Seconds with zero rural frames have an undefined ratio and are excluded from this calculation. At least two defined per-second ratios are required.
-
-The figures label SNR as measured over **1 MHz**, while paired frame decoding uses a **2 MHz synchronization channel**. The input SNR configuration must match this interpretation.
-
-Skipped recordings create gaps in frame-agreement and frame-rate curves. SNR may still be available for those recordings. Coverage is reported relative to pairs listed in the audit, rather than every theoretically scheduled acquisition.
-
-The script visualizes existing decoder results. It does not modify decoding decisions, and an association between SNR and frame agreement does not independently establish the source of interference.
-
-## 14. Publication of analysis results
+## 13. Publication of analysis results
 
 For each published result set, retain:
 
@@ -413,7 +405,6 @@ For each published result set, retain:
 - Machine-readable result datasets.
 - Figures and captions.
 - Coverage and exclusion information.
-
 Campaign coverage and analyzed coverage must be reported separately. The supplied scripts contain different date ranges and selected intervals; their presence in this repository does not imply that every analysis covers the complete measurement campaign.
 
 Results should be stored under [`../results/`](../results/), grouped by analysis type and processing run.
