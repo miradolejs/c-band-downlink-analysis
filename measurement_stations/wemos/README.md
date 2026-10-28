@@ -6,8 +6,6 @@ Firmware for a Wemos D1 mini (ESP8266) reading an AHT10 temperature/humidity sen
 
 Open `environmental_sensor/environmental_sensor.ino` in the Arduino IDE with the ESP8266 board platform and the appropriate D1 mini board selected.
 
-The source is preserved unchanged from the supplied `WEMOS_slave_cidlo_111111111111.ino`, apart from its filename and containing directory.
-
 Required libraries are:
 
 - `Wire` from the ESP8266 board platform.
