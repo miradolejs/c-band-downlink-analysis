@@ -93,39 +93,27 @@ The rural site should consequently be described as a **reference environment wit
 
 ## 6. Photographic documentation
 
-Installation photographs are stored in [`../measurement_stations/hardware/photos/`](../measurement_stations/hardware/photos/).
+The photographs below document the antenna installations and their surroundings. Equipment and electronics photographs are available in the [hardware gallery](../measurement_stations/hardware/photos/README.md).
 
-### Urban installation
+### Urban installation — Zlín
 
-![Urban station installation at the Faculty of Applied Informatics](../measurement_stations/hardware/photos/IMG_6185.jpeg)
+![Front view of the urban antenna installation](../measurement_stations/hardware/photos/urban_antenna_front.jpeg)
 
-*Urban station installation with the faculty building and rooftop structures in the background.*
+*Urban antenna installation on the faculty roof, with the faculty building in the background.*
 
-![Side view of the urban antenna](../measurement_stations/hardware/photos/IMG_7725.jpeg)
+![Rear view of the urban antenna installation](../measurement_stations/hardware/photos/urban_antenna_rear.jpeg)
 
-*Side view of the urban reflector, feed assembly, and nearby vegetation.*
+*Rear view showing the antenna support, environmental monitoring equipment, and wider surroundings.*
 
-![Rear view of the urban installation](../measurement_stations/hardware/photos/IMG_7726.jpeg)
+![Side view of the urban antenna installation](../measurement_stations/hardware/photos/urban_antenna_side.jpeg)
 
-*Rear view of the antenna mounting and environmental sensor radiation shield.*
+*Side view of the reflector, LNB assembly, and rooftop installation.*
 
-![Wider surroundings of the urban station](../measurement_stations/hardware/photos/IMG_7727.jpeg)
+### Rural installation — Hošťálková
 
-*Wider rooftop view showing the installation and surrounding landscape.*
+![Rural antenna during installation](../measurement_stations/hardware/photos/rural_antenna_installation.jpeg)
 
-### Rural installation
-
-![Rural station installation area](../measurement_stations/hardware/photos/rural_installation_location.png)
-
-*Ground-level view of the rural site, with the installation area marked by an arrow.*
-
-![Rural antenna during installation](../measurement_stations/hardware/photos/IMG_6198.jpeg)
-
-*Rural antenna during installation, with nearby roofs and wooded slopes in the background.*
-
-![Approximate view towards the rural antenna reception direction](../measurement_stations/hardware/photos/rural_reception_view.png)
-
-*Approximate view towards the reception direction at the rural site, showing an open meadow, gently rising terrain, and surrounding vegetation.*
+*Rural antenna during installation, with nearby rooftops and wooded slopes in the background.*
 
 ## 7. Comparison considerations
 
