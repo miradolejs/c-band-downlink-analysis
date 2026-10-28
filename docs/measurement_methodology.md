@@ -98,6 +98,14 @@ GPSDO-derived PPS markers were injected into the recorded signal to provide prec
 
 These markers supported alignment for analyses requiring finer temporal correspondence, particularly downlink frame comparisons. Subsequent fine alignment was performed using cross-correlation.
 
+### 5.4. Dual-station synchronization concept
+
+Both stations use GPS-disciplined references to stabilize the SDR sampling clocks and provide PPS timing for marker injection. The recorded markers support subsequent inter-station time alignment.
+
+![Conceptual overview of dual-station synchronization](figures/preliminary_dual_station_sync_concept.png)
+
+*Conceptual illustration of GPSDO-referenced frequency stabilization and capacitively coupled timing markers at both stations. The PPS-to-injection path is simplified: in the implemented system, PPS controls an RF switch that gates a separately generated RF carrier. The final injection arrangement is described in Section 6.*
+
 ## 6. PPS marker generation and injection
 
 | Parameter | Setting |
