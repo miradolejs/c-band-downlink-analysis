@@ -24,7 +24,7 @@ Exact board-platform and library versions were not supplied.
 | RX / GPIO3 | RS-485 converter RO |
 | D6 / GPIO12 | RS-485 converter DE and /RE |
 
-The sketch uses hardware `Serial` without pin swapping. It does **not** configure RS-485 data on D5/D8. The existing wiring image showing D5/D8 must be checked against the deployed wiring before this repository is used as an assembly guide. This package documents the supplied code rather than silently changing its pin assignments.
+The sketch uses hardware Serial without pin swapping. TX connects to the RS-485 converter DI input, RX connects to its RO output, and D6 controls DE and /RE, as shown in the wiring diagram.
 
 The hardware UART is also connected to the D1 mini USB-to-serial interface. Normal application traffic is Modbus at 9600 baud, not a human-readable USB log. Firmware upload and wiring must account for the shared UART.
 
