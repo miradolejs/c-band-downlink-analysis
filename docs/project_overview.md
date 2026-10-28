@@ -6,6 +6,14 @@ This project investigates the impact of terrestrial transmissions, particularly 
 
 The project was funded by ESA / Libre Space Foundation through the ESA Spectrum Sharing Makerspace programme and carried out by a research team from the Faculty of Applied Informatics, Tomas Bata University in Zlín.
 
+## System overview
+
+The diagram summarizes the main functional blocks of one measurement station: satellite reception, IQ acquisition and storage, environmental telemetry, and GPSDO-referenced marker injection.
+
+![Measurement station system overview](figures/station_system_overview.png)
+
+*Functional overview of one measurement station. Equipment illustrations are representative; detailed hardware connections are documented separately.*
+
 ## Objectives
 
 - Compare satellite downlink reception in urban and rural environments.
