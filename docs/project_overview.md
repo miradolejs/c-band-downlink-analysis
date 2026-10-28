@@ -33,7 +33,7 @@ Both stations used identical measurement equipment and acquisition settings to s
 Measurements were conducted during two periods:
 
 - **18–30 September 2026**
-- **15–25 October 2026**
+- **16–25 October 2026**
 
 Each station recorded one minute of IQ data every ten minutes.
 
