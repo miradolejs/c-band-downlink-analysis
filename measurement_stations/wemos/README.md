@@ -58,7 +58,3 @@ The Arduino polls the registers approximately every two seconds and formats the 
 - [Arduino station controller](../arduino/README.md)
 - [Hardware documentation](../hardware/README.md)
 - [Raspberry Pi acquisition software](../raspberry_pi/README.md)
-
-## Validation status
-
-The Modbus address, baud rate, register layout, and float reconstruction were compared with the supplied Arduino source. Compilation and hardware communication have not been tested in this environment.
