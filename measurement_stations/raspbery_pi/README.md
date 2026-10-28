@@ -28,8 +28,6 @@ The original `venv/` and empty runtime directories are not included. A new envir
 
 ## Dependencies
 
-The supplied virtual environment configuration identifies **Python 3.13.5** and `include-system-site-packages = true`. It contains pip 25.1.1 but no application dependency distributions from which an exact version lock could be reconstructed.
-
 Required components are:
 
 - Python 3 and NumPy.
