@@ -46,8 +46,6 @@ source venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
-This package was checked by parsing the Python sources. Acquisition, USB access, the web interface, and package compatibility have not been tested here on Raspberry Pi hardware.
-
 ## Configuration before acquisition
 
 Configuration is embedded in the supplied source files; there is no separate configuration loader.
