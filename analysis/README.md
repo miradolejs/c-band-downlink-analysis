@@ -5,7 +5,7 @@ MATLAB workflows for the dual-station C-band satellite downlink measurements.
 | Folder | Purpose |
 | --- | --- |
 | [broadband_peaks](broadband_peaks/) | Long-term broadband peak counts |
-| [broadband_bursts](broadband_bursts/) | Detect peaks in a recording and mark them on its spectrogram |
+| [broadband_peaks_mark_in_spectrogram](broadband_peaks_mark_in_spectrogram/) | Detect peaks in a recording and mark them on its spectrogram |
 | [snr](snr/) | Downlink SNR analysis using saved noise statistics |
 | [noise_statistics](noise_statistics/) | Median noise level and noise standard deviation |
 | [noise_temperature](noise_temperature/) | Noise level and temperature comparison for each station |

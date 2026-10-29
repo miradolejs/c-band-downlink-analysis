@@ -7,7 +7,7 @@ Published data products from the dual-station C-band satellite downlink study at
 | Product | Published September coverage | Results |
 | --- | --- | --- |
 | Broadband interference peak counts | 18–30 September 2026 | [broadband_peaks/2026-09-18_2026-09-30/](broadband_peaks/2026-09-18_2026-09-30/) |
-| Broadband peak detection examples with marked spectrograms | 25 September 2026, 03:00 and 18:00 | [broadband_bursts/2026-09-18_2026-09-30/](broadband_bursts/2026-09-18_2026-09-30/) |
+| Broadband peak detection examples with marked spectrograms | 25 September 2026, 03:00 and 18:00 | [broadband_peaks_mark_in_spectrogram/2026-09-18_2026-09-30/](broadband_peaks_mark_in_spectrogram/2026-09-18_2026-09-30/) |
 | Noise median and standard deviation | 18–30 September 2026 | [noise_statistics/2026-09-18_2026-09-30/](noise_statistics/2026-09-18_2026-09-30/) |
 | Downlink SNR | 18–30 September 2026 | [snr/2026-09-18_2026-09-30/](snr/2026-09-18_2026-09-30/) |
 | Temperature and noise comparisons, both stations | 18–30 September 2026 | [noise_temperature/2026-09-18_2026-09-30/](noise_temperature/2026-09-18_2026-09-30/) |
