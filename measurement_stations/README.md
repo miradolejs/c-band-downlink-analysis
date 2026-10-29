@@ -91,7 +91,7 @@ The [`hardware/`](hardware/) directory is organized as follows:
 
 Installation instructions, dependencies, configuration examples, and startup procedures are documented in the respective software directories:
 
-- [`raspberry_pi/`](../measurement_stations/raspbery_pi/README.md)
+- [`raspberry_pi/`](../measurement_stations/raspberry_pi/README.md)
 - [`arduino/`](../measurement_stations/arduino/README.md)
 
 The acquisition schedule and local storage paths must be configured for the intended deployment.
