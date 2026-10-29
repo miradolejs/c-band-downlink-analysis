@@ -144,6 +144,12 @@ The recorder replaces the status JSON using a temporary file. If it is unavailab
 
 Run only one recorder instance per station and ensure that both processes have compatible permissions for these files.
 
+### Recording and monitoring interface
+
+![Raspberry Pi recording and monitoring interface](images/recorder_interface.png)
+
+*Example of the Raspberry Pi acquisition environment during recording, showing the web monitoring interface, recorder console output, and stored RAW recordings with associated JSON metadata.*
+
 ## Manual HDD exchange and SSD buffering
 
 The browser controls retain their original Czech labels:
