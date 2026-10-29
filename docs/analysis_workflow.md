@@ -104,7 +104,7 @@ The figure is generated interactively; this script does not automatically export
 ### 5.2. Short-interval peak inspection
 
 **Script:** `detect_broadband_peaks_dbfs.m`  
-**Repository directory:** [`../analysis/broadband_bursts/`](../analysis/broadband_bursts/)
+**Repository directory:** [`../analysis/broadband_peaks_mark_in_spectrogram/`](../analysis/broadband_peaks_mark_in_spectrogram/)
 
 This script averages linear FFT-bin power over selected noise-reference frequencies, converts the resulting time series to dBFS, and detects local maxima above a threshold.
 
