@@ -1,0 +1,28 @@
+C-BAND DOWNLINK -> WIRESHARK
+
+Status: ok
+RAW: D:\iq_data\mesto_1_2509_3009_2026\250926\1031_030000_250926.raw
+Interval: 10.000000 to 15.000000 s
+RF: 3839.000000 MHz; Fs RAW: 10.000000 MHz
+Nominal Rs: 1024000.000 symbols/s
+Carrier offset: 1359.989 Hz
+FEC: K=7, R=1/2, MATLAB generators [133 171] (octal)
+Pair start: symbol 2
+Pair syndrome 0/1: 0.328603 / 0.204420
+Re-encoding disagreement: 8.880246 % (NOT BER)
+Layout: 496 + 16*(280+9) = 5120 bits
+Origin in differential bitstream z, zero-based index: 2182
+Alignment selection: CRC count in first half; second half held out
+CRC passes in first/second half: 6 / 63
+Independently validated selection: 1
+Valid HDLC FCS: 69
+Ethernet 69; ARP 64; IPv4 3; IPv6 1; IEEE 802.3 1
+PCAP: D:\iq_data\mesto_1_2509_3009_2026\250926\1031_030000_250926_o10p000_d5p000_20261029_104534548\ethernet.pcap
+
+The PCAP contains only frames with valid HDLC FCS, with that FCS removed.
+Time is relative to the first exported packet, based on the nominal Rs.
+The calendar date in the PCAP is not the measurement date.
+Boundary frames and corrupted frames may be missing.
+CRC ratios do not estimate BER or network packet loss.
+The meaning of the auxiliary 496-bit and 9-bit branches remains unresolved.
+The physical-layer standard and specific modem have not been identified.
