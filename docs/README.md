@@ -20,7 +20,4 @@ The experiment compares reception at two locations using identical measurement s
 - [`../analysis/`](../analysis/) — Data processing and visualization scripts.
 - [`../results/`](../results/) — Analysis outputs, tables, and figures.
 - [`../data/`](../data/README.md) — Archive organization, access status, catalog generation, and short IQ example tools.
-
-## Planned repository sections
-
-- `reports/` — Final project report and supplementary materials.
+- [`../reports/`](../reports/README.md) — Public technical evaluation of the project and its outputs.
