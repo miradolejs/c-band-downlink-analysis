@@ -1,2 +1,6 @@
 # c-band-downlink-analysis
 This analysis assesses the impact of terrestrial transmitters, particularly 5G networks, on C-band satellite downlink reception. Measurements using two identical stations in urban and rural locations reveal differences in reception quality and day–night stability, consistent with patterns of human activity and potential 5G interference.
+
+```markdown
+Analysis results are available for **18–30 September 2026** and **16–25 October 2026**. Both campaigns include spectral and environmental analyses, selected spectrograms, broadband peak detection examples, and standalone downlink decoding examples. PPS-assisted long-term frame comparison is published for **25–30 September 2026**. See the [results overview](results/README.md) for coverage and interpretation.
+```
