@@ -2,15 +2,16 @@
 
 This directory documents the design, hardware, and software of the two SDR stations used for C-band satellite downlink measurements.
 
-The stations were deployed in Zlín and Hošťálková, Czech Republic. Both used the same principal equipment and acquisition settings, with installation differences documented in the measurement methodology.
+The stations were deployed in Zlín and Hošťálkova, Czech Republic. Both used the same principal equipment and acquisition settings, with installation differences documented in the measurement methodology.
 
 ## Directory structure
 
 | Directory | Contents |
 |---|---|
 | [`hardware/`](hardware/) | Component list, schematics, wiring documentation, and installation photographs |
-| [`raspberry_pi/`](raspberry_pi/) | IQ recording software, web interface, configuration, and service files |
+| [`raspberry_pi/`](raspberry_pi/) | IQ recording software, web interface, dependencies, and configuration instructions |
 | [`arduino/`](arduino/) | Arduino firmware and documentation for PPS marker timing and environmental data forwarding |
+| [`wemos/`](wemos/) | Wemos D1 mini firmware and documentation for AHT10 sensor readings and RS-485 communication |
 
 ## Receiving system
 
@@ -74,7 +75,7 @@ An **AHT10 temperature and humidity sensor** was installed near each antenna ins
 
 A Wemos D1 mini read the sensor and transferred readings to the Arduino over RS-485. The Arduino forwarded environmental data to the Raspberry Pi over USB for inclusion in recording metadata.
 
-The Wemos firmware should be retained alongside the Arduino documentation when added to this repository.
+The [Wemos firmware and setup instructions](wemos/README.md) document the sensor interface and RS-485 communication.
 
 ## Hardware documentation
 
@@ -91,8 +92,9 @@ The [`hardware/`](hardware/) directory is organized as follows:
 
 Installation instructions, dependencies, configuration examples, and startup procedures are documented in the respective software directories:
 
-- [`raspberry_pi/`](../measurement_stations/raspberry_pi/README.md)
-- [`arduino/`](../measurement_stations/arduino/README.md)
+- [`raspberry_pi/`](raspberry_pi/README.md)
+- [`arduino/`](arduino/README.md)
+- [`wemos/`](wemos/README.md)
 
 The acquisition schedule and local storage paths must be configured for the intended deployment.
 
