@@ -19,8 +19,8 @@ The experiment compares reception at two locations using identical measurement s
 - [`../measurement_stations/`](../measurement_stations/) — Hardware schematics, wiring, Raspberry Pi software, and Arduino and Wemos firmware.
 - [`../analysis/`](../analysis/) — Data processing and visualization scripts.
 - [`../results/`](../results/) — Analysis outputs, tables, and figures.
+- [`../data/`](../data/README.md) — Archive organization, access status, catalog generation, and short IQ example tools.
 
 ## Planned repository sections
 
-- `data/` — Recording catalog, example RAW/JSON files, and access information for the full IQ archive.
 - `reports/` — Final project report and supplementary materials.

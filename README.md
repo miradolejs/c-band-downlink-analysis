@@ -11,3 +11,4 @@ Analysis results are available for **18–30 September 2026** and **16–25 Octo
 | [Measurement stations](measurement_stations/README.md) | Hardware design, wiring, photographs, Raspberry Pi acquisition software, and Arduino and Wemos firmware |
 | [Analysis](analysis/README.md) | MATLAB processing and visualization scripts |
 | [Results](results/README.md) | Published figures, numerical datasets, PCAP examples, and processing coverage for both campaigns |
+| [Recorded datasets](data/README.md) | Archive organization, access status, catalog generation, and short IQ example tools |

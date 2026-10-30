@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-30T10:00:23.341887+00:00",
+  "nominal_recording_start_local": "2026-09-25T03:00:00",
+  "source_software_start_difference_city_minus_village_s": 0.008747339248657227,
+  "sample_rate_hz": 10000000.0,
+  "center_frequency_if_hz": 1312000000.0,
+  "requested_start_offset_s": "10",
+  "requested_duration_s": "1",
+  "start_sample_zero_based": 100000000,
+  "sample_count": 10000000,
+  "actual_start_offset_s": 10.0,
+  "actual_duration_s": 1.0,
+  "rounding": "Nearest complex sample; decimal half-up.",
+  "synchronization": "Same nominal recording time and sample offset only; no PPS or cross-correlation alignment.",
+  "timestamp_limitation": "Source start timestamps are software references, not verified first-sample hardware timestamps.",
+  "stations": {
+    "city": {
+      "source_raw_filename": "1031_030000_250926.raw",
+      "excerpt_raw": "city/1031_030000_250926_excerpt.raw",
+      "excerpt_metadata": "city/1031_030000_250926_excerpt.json",
+      "source_metadata": "city/1031_030000_250926_source.json",
+      "raw_size_bytes": 40000000,
+      "raw_sha256": "390d89be2090643a0c77a0d36fd59299f45a4bef5b63068c800d350c3c961ed6"
+    },
+    "village": {
+      "source_raw_filename": "1031_030000_250926.raw",
+      "excerpt_raw": "village/1031_030000_250926_excerpt.raw",
+      "excerpt_metadata": "village/1031_030000_250926_excerpt.json",
+      "source_metadata": "village/1031_030000_250926_source.json",
+      "raw_size_bytes": 40000000,
+      "raw_sha256": "0034733615b40be28103d6bfd1b383249799eed369326c99db0c8b97c25a3a5f"
+    }
+  }
+}

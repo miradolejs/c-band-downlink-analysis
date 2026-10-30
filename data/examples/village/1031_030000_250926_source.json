@@ -1,0 +1,13 @@
+{
+    "start_iso": "2026-09-25T03:00:00.064193",
+    "sample_rate": 10000000.0,
+    "center_freq": 1312000000.0,
+    "gain": 0,
+    "format": "int16",
+    "samples_recorded": 599789568,
+    "start_unix": 1790298000.0641932,
+    "write_error": false,
+    "temperature_c": 9.38,
+    "humidity_percent": 100.0,
+    "env_valid": true
+}

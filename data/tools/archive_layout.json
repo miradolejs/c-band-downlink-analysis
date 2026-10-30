@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "campaigns": {
+    "2026-09-18_2026-09-30": {"start_date": "2026-09-18", "end_date": "2026-09-30"},
+    "2026-10-16_2026-10-25": {"start_date": "2026-10-16", "end_date": "2026-10-25"}
+  },
+  "sources": [
+    {"directory": "1_Hostalkova_180926_240926", "station": "village", "campaign": "2026-09-18_2026-09-30"},
+    {"directory": "1_Hostalkova_250926_300926", "station": "village", "campaign": "2026-09-18_2026-09-30"},
+    {"directory": "1_Zlin_180926_240926", "station": "city", "campaign": "2026-09-18_2026-09-30"},
+    {"directory": "1_Zlin_250926_300926", "station": "city", "campaign": "2026-09-18_2026-09-30"},
+    {"directory": "2_Hostalkova_161026_191026", "station": "village", "campaign": "2026-10-16_2026-10-25"},
+    {"directory": "2_Hostalkova_201026_251026", "station": "village", "campaign": "2026-10-16_2026-10-25"},
+    {"directory": "2_Zlin_161026_191026", "station": "city", "campaign": "2026-10-16_2026-10-25"},
+    {"directory": "2_Zlin_201026_251026", "station": "city", "campaign": "2026-10-16_2026-10-25"}
+  ]
+}

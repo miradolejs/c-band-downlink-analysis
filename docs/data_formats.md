@@ -9,21 +9,14 @@ Each measurement consists of two files with the same base name:
 
 Recordings are grouped into daily directories using the `DDMMYY` date format. Separate parent directories identify the measurement site and campaign.
 
-Example paths from the analysis environment:
+Archive paths are relative to the archive root. For example:
 
 ```text
-iq_data/
-├── mesto_1_1809_2409_2026/
-│   └── 200926/
-│       ├── 410_193000_200926.raw
-│       └── 410_193000_200926.json
-└── vesnice_1_1809_2409_2026/
-    └── 200926/
-        ├── 410_193000_200926.raw
-        └── 410_193000_200926.json
+2_Zlin_201026_251026/201026/581_000000_201026.raw
+2_Zlin_201026_251026/201026/581_000000_201026.json
 ```
 
-Here, `mesto` identifies the urban station in Zlín and `vesnice` identifies the rural station in Hošťálková.
+`Zlin` identifies the city station and `Hostalkova` the village station. The eight source-directory names and their campaign assignments are documented in [Recorded datasets](../data/README.md#archive-organization). Directory labels containing `151026` do not change the published October campaign start of 16 October 2026; earlier preparatory recordings, if present, are cataloged separately.
 
 ## 2. File naming convention
 
@@ -176,6 +169,12 @@ Use `start_unix` when comparing absolute times across datasets, converting it ex
 
 The SDR stream is activated before `start_unix` is captured. This timestamp is therefore a software acquisition reference, not a verified timestamp of the first stored sample. Precise alignment uses recorded PPS markers and subsequent signal alignment.
 
+### Return to standard time on 25 October 2026
+
+The repeated local 02:00–02:59 hour was not acquired by the recorder. After a recording around 02:50 CEST, the next scheduled local time remained 03:00; the return to standard time therefore extended the wait to approximately 70 elapsed minutes. The archive does not contain an additional set of recordings for that repeated hour.
+
+Preserve local filename timestamps and use `start_unix` to distinguish elapsed time from local wall-clock time. The catalog derives UTC only from explicit metadata timestamps; it does not assume an offset for ambiguous offset-free local times.
+
 ### Environmental metadata
 
 Environmental data is read after IQ acquisition finishes. The values are associated with the recording but are not a continuous environmental time series or an average over the recording.
@@ -281,3 +280,9 @@ See:
 - [`../analysis/`](../analysis/) — Processing scripts and output definitions.
 - [`../results/`](../results/) — Tables, figures, and other analysis products.
 - [`analysis_workflow.md`](analysis_workflow.md) — Processing sequence and dependencies.
+
+## 11. Public IQ excerpts
+
+Short examples are derived files with `_excerpt.raw` and `_excerpt.json` names. Their JSON uses the `iq_excerpt_metadata` schema, records the actual excerpt sample count and source-relative sample offset, and preserves original timestamps in `source_*` fields. A separate `*_source.json` retains the original recording metadata byte-for-byte.
+
+These excerpts are not original full recorder files and are not automatically discovered by the full-recording batch filename pattern. Load them explicitly using the excerpt JSON and a zero start offset. Equal nominal times and equal sample offsets do not establish PPS-assisted inter-station synchronization. See [Short IQ examples](../data/examples/README.md) for generation and timing conventions.
