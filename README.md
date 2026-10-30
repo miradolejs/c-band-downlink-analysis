@@ -12,3 +12,9 @@ Analysis results are available for **18–30 September 2026** and **16–25 Octo
 | [Analysis](analysis/README.md) | MATLAB processing and visualization scripts |
 | [Results](results/README.md) | Published figures, numerical datasets, PCAP examples, and processing coverage for both campaigns |
 | [Recorded datasets](data/README.md) | Archive organization, access status, catalog generation, and short IQ example tools |
+
+## Licensing
+
+Original project software is licensed under [Apache License 2.0](LICENSE). Original documentation and identified original data products are licensed under [CC BY 4.0](LICENSES/CC-BY-4.0.txt).
+
+See [LICENSING.md](LICENSING.md) for the exact scope and exclusions, and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for third-party materials and dependencies. The default grants exclude Mapy.com imagery, captured I/Q and decoded third-party communication payloads, and other separately licensed materials. These repository licenses do not automatically apply to the full external IQ archive.
