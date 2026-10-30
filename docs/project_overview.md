@@ -47,7 +47,9 @@ Each station recorded one minute of IQ data every ten minutes.
 | Downlink of interest 1 | 3839 MHz, approximately 2 MHz bandwidth |
 | Downlink of interest 2 | 3842 MHz, approximately 0.5 MHz bandwidth |
 | Recording schedule | 60 seconds every 10 minutes |
-| Total recorded data | Approximately 14.34 TB across both stations |
+| Total recorded data | Approximately 15.89 TB (14.45 TiB), including RAW recordings and JSON metadata across both stations |
+
+The [recording inventory](../data/catalog/archive_summary.csv) contains **6,624 RAW recordings** and **6,624 matching JSON files**, totaling **15,887,837,575,362 bytes**. TB uses decimal units (10^12 bytes); TiB uses binary units (2^40 bytes).
 
 ## Analysis scope
 

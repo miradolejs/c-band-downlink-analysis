@@ -9,6 +9,18 @@ This directory documents the IQ recordings from the dual-station C-band measurem
 
 Each station recorded nominally 60 seconds every ten minutes, at 10 MS/s with interleaved little-endian int16 I/Q. The recorded IF centre is 1312 MHz, corresponding to RF 3838 MHz for the 5150 MHz LNB oscillator. Actual duration is determined by the stored sample count.
 
+## Recording inventory
+
+| Campaign | Station | RAW recordings | JSON metadata files | RAW + JSON volume (TB) |
+| --- | --- | ---: | ---: | ---: |
+| 18–30 September 2026 | City — Zlín | 1,872 | 1,872 | 4.4907 |
+| 18–30 September 2026 | Village — Hošťálkova | 1,872 | 1,872 | 4.4905 |
+| 16–25 October 2026 | City — Zlín | 1,440 | 1,440 | 3.4535 |
+| 16–25 October 2026 | Village — Hošťálkova | 1,440 | 1,440 | 3.4532 |
+| **Total** | **Both stations** | **6,624** | **6,624** | **15.8878** |
+
+The archive contains **15,887,837,575,362 bytes**, approximately **15.89 TB (14.45 TiB)**, including RAW files and JSON metadata. These are logical file sizes, not filesystem allocated space. TB denotes 10^12 bytes and TiB denotes 2^40 bytes. Counts and exact byte volumes are available in [archive_summary.csv](catalog/archive_summary.csv); scan status and issue counts are retained in [archive_summary.json](catalog/archive_summary.json).
+
 ## Contents
 
 | Path | Purpose |
@@ -30,9 +42,9 @@ The archive root contains the following station-specific source directories. Pat
 | `1_Hostalkova_250926_300926/` | Village | September |
 | `1_Zlin_180926_240926/` | City | September |
 | `1_Zlin_250926_300926/` | City | September |
-| `2_Hostalkova_151026_191026/` | Village | October |
+| `2_Hostalkova_161026_191026/` | Village | October |
 | `2_Hostalkova_201026_251026/` | Village | October |
-| `2_Zlin_151026_191026/` | City | October |
+| `2_Zlin_161026_191026/` | City | October |
 | `2_Zlin_201026_251026/` | City | October |
 
 Each source contains daily `DDMMYY` directories with matching `N_HHMMSS_DDMMYY.raw` and `.json` files. For example:
@@ -41,8 +53,6 @@ Each source contains daily `DDMMYY` directories with matching `N_HHMMSS_DDMMYY.r
 2_Zlin_201026_251026/201026/581_000000_201026.raw
 2_Zlin_201026_251026/201026/581_000000_201026.json
 ```
-
-The `151026` labels in two source-directory names do not change the published October campaign start of **16 October 2026**. The catalog uses the recording filename date to determine campaign membership. Earlier preparatory files, if present, are listed separately rather than silently discarded.
 
 ## Time conventions
 

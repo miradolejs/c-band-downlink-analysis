@@ -16,7 +16,7 @@ Archive paths are relative to the archive root. For example:
 2_Zlin_201026_251026/201026/581_000000_201026.json
 ```
 
-`Zlin` identifies the city station and `Hostalkova` the village station. The eight source-directory names and their campaign assignments are documented in [Recorded datasets](../data/README.md#archive-organization). Directory labels containing `151026` do not change the published October campaign start of 16 October 2026; earlier preparatory recordings, if present, are cataloged separately.
+`Zlin` identifies the city station and `Hostalkova` the village station. The eight source-directory names and their campaign assignments are documented in [Recorded datasets](../data/README.md#archive-organization).
 
 ## 2. File naming convention
 

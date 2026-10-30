@@ -9,7 +9,7 @@ Two SDR measurement stations were deployed to compare C-band satellite downlink 
 
 Both antennas had an unobstructed view in the selected reception direction. The stations used the same principal hardware and acquisition settings, with different coaxial cable lengths.
 
-Measurements were conducted during **18–30 September 2026** and **16–25 October 2026**. Each station recorded **60 seconds of IQ data every 10 minutes**. The combined dataset contains approximately **14.34 TB** of recordings.
+Measurements were conducted during **18–30 September 2026** and **16–25 October 2026**. Each station recorded **60 seconds of IQ data every 10 minutes**. The combined archive contains **6,624 RAW recordings** and their **6,624 matching JSON metadata files**, totaling approximately **15.89 TB (14.45 TiB)** across both stations. The exact logical file volume is **15,887,837,575,362 bytes**, as recorded in the [archive inventory](../data/catalog/archive_summary.csv); this is not the filesystem allocated-space measurement.
 
 ## 2. Receiving equipment
 
