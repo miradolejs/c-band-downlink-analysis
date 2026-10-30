@@ -19,7 +19,7 @@ The processing script uses the RF reference band 3836.5–3837.5 MHz. Peak detec
 
 No marked detections means that no local maxima met the configured criteria in the shown interval. It does not prove the absence of interference. The plots use their own displayed axis limits; check the numerical scales before comparing visual amplitudes.
 
-Processing script: [detect_broadband_peaks_dbfs.m](../../../analysis/broadband_bursts/detect_broadband_peaks_dbfs.m).
+Processing script: [detect_broadband_peaks_dbfs.m](../../../analysis/broadband_peaks_mark_in_spectrogram/detect_broadband_peaks_dbfs.m).
 
 These selected examples complement the [long-term broadband peak counts](../../broadband_peaks/2026-09-18_2026-09-30/). They do not replace the long-term dataset.
 

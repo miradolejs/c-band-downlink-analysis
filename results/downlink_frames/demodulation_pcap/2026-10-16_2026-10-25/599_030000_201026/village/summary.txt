@@ -1,0 +1,28 @@
+C-BAND DOWNLINK -> WIRESHARK
+
+Status: ok
+RAW: D:\vesnice_2_201026_251026\201026\599_030000_201026.raw
+Interval: 25.000000 to 30.000000 s
+RF: 3839.000000 MHz; Fs RAW: 10.000000 MHz
+Nominal Rs: 1024000.000 symbols/s
+Carrier offset: 2447.289 Hz
+FEC: K=7, R=1/2, MATLAB generators [133 171] (octal)
+Pair start: symbol 1
+Pair syndrome 0/1: 0.000687 / 0.499939
+Re-encoding disagreement: 0.006893 % (NOT BER)
+Layout: 496 + 16*(280+9) = 5120 bits
+Origin in differential bitstream z, zero-based index: 4192
+Alignment selection: CRC count in first half; second half held out
+CRC passes in first/second half: 82 / 80
+Independently validated selection: 1
+Valid HDLC FCS: 162
+Ethernet 162; ARP 117; IPv4 42; IPv6 1; IEEE 802.3 2
+PCAP: D:\vesnice_2_201026_251026\201026\599_030000_201026_o25p000_d5p000_20261030_065607918\ethernet.pcap
+
+The PCAP contains only frames with valid HDLC FCS, with that FCS removed.
+Time is relative to the first exported packet, based on the nominal Rs.
+The calendar date in the PCAP is not the measurement date.
+Boundary frames and corrupted frames may be missing.
+CRC ratios do not estimate BER or network packet loss.
+The meaning of the auxiliary 496-bit and 9-bit branches remains unresolved.
+The physical-layer standard and specific modem have not been identified.
