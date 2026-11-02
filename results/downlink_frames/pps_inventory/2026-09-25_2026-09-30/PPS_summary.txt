@@ -1,0 +1,14 @@
+INVENTURA PPS - prvnich 5.000 s RAW
+Ocekavany IF 1315.000000 MHz; hledani +/- 50.000 kHz
+PPS nebyl detekovan != dokaz fyzicke absence. Prahy jsou v MAT metadatech.
+Casove odhady jsou hrube STFT hrany, nikoli presne PPS znacky.
+Jemna frekvence je odhad vuci referenci SDR, ne garantovana absolutni frekvence.
+
+city: souboru vyhodnoceno 864; PPS pritomen 864; nedetekovan 0; nejasny 0; ostatni/chyby 0.
+  Nalezeno ve slozkach 864 souboru; nezpracovano v tomto datasetu 0.
+  Vstup 1: pozadovano 6 dennich slozek, chybi 0.
+  Odhad IF: median 1314987946.275 Hz, rozsah 1314985723.189 az 1314989419.412 Hz.
+village: souboru vyhodnoceno 864; PPS pritomen 857; nedetekovan 7; nejasny 0; ostatni/chyby 0.
+  Nalezeno ve slozkach 864 souboru; nezpracovano v tomto datasetu 0.
+  Vstup 1: pozadovano 6 dennich slozek, chybi 0.
+  Odhad IF: median 1314989003.836 Hz, rozsah 1314986320.147 az 1314990944.993 Hz.

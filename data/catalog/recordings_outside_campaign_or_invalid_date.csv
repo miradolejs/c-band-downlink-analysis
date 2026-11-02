@@ -1,0 +1,1 @@
+campaign,station,source_directory,measurement_id,recording_start_local,start_iso,start_unix,start_utc,utc_source,local_utc_offset_seconds,raw_path,json_path,raw_size_bytes,json_size_bytes,samples_from_size,samples_recorded,sample_rate_hz,duration_s,center_frequency_if_hz,stored_format,write_error,temperature_c,humidity_percent,env_valid,within_campaign,issues

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+
+# Captured / decoded third-party communication content - never publish
+*.pcap
+*.pcapng
+*.raw
+*_excerpt.json
+*_source.json
+*_frames.mat
+*_frames.zip
+results/downlink_frames/demodulation_pcap/**/analysis.mat
+results/downlink_frames/demodulation_pcap/**/*.fig
+data/examples/**/
+data/examples/pair_manifest.json
+data/examples/checksums.sha256

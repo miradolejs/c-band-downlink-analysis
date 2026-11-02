@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-30T09:53:20.971786+00:00",
+  "raw_payloads_read": false,
+  "raw_checksums_computed": false,
+  "scope": "Logical file sizes by archive-relative path; no RAW content-based deduplication.",
+  "all_configured_sources_available": true,
+  "campaigns": {
+    "2026-09-18_2026-09-30": {
+      "start_date": "2026-09-18",
+      "end_date": "2026-09-30"
+    },
+    "2026-10-16_2026-10-25": {
+      "start_date": "2026-10-16",
+      "end_date": "2026-10-25"
+    }
+  },
+  "sources": [
+    {
+      "source_directory": "1_Hostalkova_180926_240926",
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "village",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 1008,
+      "raw_bytes": 2417826103296,
+      "json_files": 1008,
+      "json_bytes": 333806
+    },
+    {
+      "source_directory": "1_Hostalkova_250926_300926",
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "village",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 864,
+      "raw_bytes": 2072632918016,
+      "json_files": 864,
+      "json_bytes": 286035
+    },
+    {
+      "source_directory": "1_Zlin_180926_240926",
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "city",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 1008,
+      "raw_bytes": 2417906171904,
+      "json_files": 1008,
+      "json_bytes": 334047
+    },
+    {
+      "source_directory": "1_Zlin_250926_300926",
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "city",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 864,
+      "raw_bytes": 2072806014976,
+      "json_files": 864,
+      "json_bytes": 286243
+    },
+    {
+      "source_directory": "2_Hostalkova_161026_191026",
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "village",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 576,
+      "raw_bytes": 1381355028480,
+      "json_files": 576,
+      "json_bytes": 190669
+    },
+    {
+      "source_directory": "2_Hostalkova_201026_251026",
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "village",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 864,
+      "raw_bytes": 2071845093376,
+      "json_files": 864,
+      "json_bytes": 286034
+    },
+    {
+      "source_directory": "2_Zlin_161026_191026",
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "city",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 576,
+      "raw_bytes": 1381493342208,
+      "json_files": 576,
+      "json_bytes": 190689
+    },
+    {
+      "source_directory": "2_Zlin_201026_251026",
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "city",
+      "available": true,
+      "scan_errors": 0,
+      "raw_files": 864,
+      "raw_bytes": 2071970709504,
+      "json_files": 864,
+      "json_bytes": 286079
+    }
+  ],
+  "summary": [
+    {
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "city",
+      "configured_sources": 2,
+      "available_sources": 2,
+      "scan_errors": 0,
+      "raw_files": 1872,
+      "json_files": 1872,
+      "raw_bytes": 4490712186880,
+      "json_bytes": 620290,
+      "total_bytes": 4490712807170,
+      "total_TB": 4.49071280717,
+      "total_TiB": 4.0842795053049485,
+      "paired_entries": 1872,
+      "in_campaign_entries": 1872,
+      "outside_or_invalid_date_entries": 0,
+      "entries_with_issues": 0
+    },
+    {
+      "campaign": "2026-09-18_2026-09-30",
+      "station": "village",
+      "configured_sources": 2,
+      "available_sources": 2,
+      "scan_errors": 0,
+      "raw_files": 1872,
+      "json_files": 1872,
+      "raw_bytes": 4490459021312,
+      "json_bytes": 619841,
+      "total_bytes": 4490459641153,
+      "total_TB": 4.490459641153,
+      "total_TiB": 4.084049252153818,
+      "paired_entries": 1872,
+      "in_campaign_entries": 1872,
+      "outside_or_invalid_date_entries": 0,
+      "entries_with_issues": 0
+    },
+    {
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "city",
+      "configured_sources": 2,
+      "available_sources": 2,
+      "scan_errors": 0,
+      "raw_files": 1440,
+      "json_files": 1440,
+      "raw_bytes": 3453464051712,
+      "json_bytes": 476768,
+      "total_bytes": 3453464528480,
+      "total_TB": 3.45346452848,
+      "total_TiB": 3.140907691413304,
+      "paired_entries": 1440,
+      "in_campaign_entries": 1440,
+      "outside_or_invalid_date_entries": 0,
+      "entries_with_issues": 0
+    },
+    {
+      "campaign": "2026-10-16_2026-10-25",
+      "station": "village",
+      "configured_sources": 2,
+      "available_sources": 2,
+      "scan_errors": 0,
+      "raw_files": 1440,
+      "json_files": 1440,
+      "raw_bytes": 3453200121856,
+      "json_bytes": 476703,
+      "total_bytes": 3453200598559,
+      "total_TB": 3.453200598559,
+      "total_TiB": 3.140667648548515,
+      "paired_entries": 1440,
+      "in_campaign_entries": 1440,
+      "outside_or_invalid_date_entries": 0,
+      "entries_with_issues": 0
+    }
+  ],
+  "issue_counts": {},
+  "outside_or_invalid_date_entries": 0,
+  "merged_input_snapshots": 4,
+  "duplicate_entries_removed": 0
+}

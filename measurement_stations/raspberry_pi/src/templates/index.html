@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SDR Monitor</title>
+</head>
+<body>
+    <h1>SDR Monitor</h1>
+
+    <div id="status"></div>
+    <div id="swap"></div>
+
+    <button onclick="prepare()">Výměna disku</button>
+
+    <script>
+		async function update() {
+
+			try {
+	
+				let res = await fetch('/status');
+				let data = await res.json();
+
+				document.getElementById('status').innerHTML =
+					"Úložiště: " + (data.use_ssd ? "SSD" : "HDD") +
+					"<br>Disk připojen: " + data.disk_available +
+					"<br>Přesun dat: " + data.transfer_in_progress +
+					"<br>Čeká transfer: " + data.pending_transfer +
+					"<br>Log: " + data.last_log +
+					"<br><small>Aktualizováno: " + new Date().toLocaleTimeString() + "</small>";
+
+				if (data.safe_to_remove) {
+					document.getElementById('swap').innerHTML =
+						"<b style='color:green'>Můžeš odpojit disk</b><br>" +
+						"<button onclick='confirm()'>Disk vyměněn</button>";
+				} else if (data.swap_requested) {
+					document.getElementById('swap').innerHTML =
+						"Čekám na dokončení záznamu...";
+				} else {
+					document.getElementById('swap').innerHTML = "";
+				}
+
+			} catch(e) {
+
+				console.log("STATUS ERROR:", e);
+
+			}
+
+			setTimeout(update, 1000);
+		}
+
+        function prepare() {
+			fetch(window.location.origin + '/prepare_disk_swap', {
+				method: "POST"
+			});
+		}
+
+		function confirm() {
+			fetch(window.location.origin + '/confirm_swap', {
+				method: "POST"
+			});
+		}
+
+        update();
+    </script>
+</body>
+</html>

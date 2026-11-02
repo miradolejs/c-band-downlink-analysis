@@ -1,0 +1,1 @@
+PPS nebyl detekovan pri nastavenych prazich, prvnich 5.000 s.
